@@ -32,7 +32,7 @@ export default {
         author: "Jane Doe",
         publishedAt: "2016-04-10",
       },
-      // 数组更新接口
+      // 数组变更方法，它们会触发视图进行更新
       // push()
       // pop()
       // shift()
