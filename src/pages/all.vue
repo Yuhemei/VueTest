@@ -8,7 +8,10 @@
     <!-- 每当触发重新渲染时，调用方法将总会再次执行函数 -->
     <span>{{ reversedMessageComp }}</span>
     <p>Reversed message: "{{ reversedMessage() }}"</p>
-    
+    <!-- 在遍历对象时，会按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下都一致。 -->
+    <div v-for="(value, name, index) in object" :key="index">
+      {{ name }}: {{ value }}
+    </div>
   </div>
 </template>
 
@@ -24,6 +27,20 @@ export default {
       },
       firstName: "Foo",
       lastName: "Bar",
+      object: {
+        title: "How to do lists in Vue",
+        author: "Jane Doe",
+        publishedAt: "2016-04-10",
+      },
+      // 数组更新接口
+      // push()
+      // pop()
+      // shift()
+      // unshift()
+      // splice()
+      // sort()
+      // reverse()
+      arr: [],
     };
   },
   computed: {
