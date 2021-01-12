@@ -33,6 +33,11 @@ const routes = [
     name: 'watchTest',
     component: ()=>import('../views/all.vue')
   },
+  {
+    path: '/canvas',
+    name: 'canvas',
+    component: ()=>import('../views/canvas.vue')
+  },
 ]
 
 const router = new VueRouter({
