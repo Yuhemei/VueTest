@@ -8,7 +8,7 @@
 `fillRect(x, y, width, height)`
 绘制一个填充的矩形
 
-`strokeRect(x, y, width, height`绘制一个矩形的边框
+`strokeRect(x, y, width, height)`绘制一个矩形的边框
 
 `clearRect(x, y, width, height)`
 清除指定矩形区域，让清除部分完全透明。
@@ -121,7 +121,12 @@ function draw() {
 
 * anticlockwise false是顺时针  true是逆时针
 
-## 二次贝塞尔曲线
+## 贝塞尔曲线
+
+[漂亮的贝塞尔曲线](https://www.jianshu.com/p/8f82db9556d2)
+其实就是外切  三切定理  第一个点是为起点  用到了canvas的moveTo()机制
+
+### 二次贝塞尔曲线
 
 `quadraticCurveTo(cp1x, cp1y, x, y)`
 
@@ -145,7 +150,7 @@ function draw() {
 }
 ```
 
-## 三次贝塞尔曲线
+### 三次贝塞尔曲线
 
 `bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)`
 
@@ -264,6 +269,7 @@ function roundedRect(ctx, x, y, width, height, radius){
 
 ## Path2D对象
 
+Path2D
 ### 实例
 
 ```js
@@ -287,7 +293,7 @@ function draw() {
     var circle = new Path2D();
     circle.moveTo(125, 35);
     circle.arc(100, 35, 25, 0, 2 * Math.PI);
-
+    // 复制路径
     ctx.stroke(rectangle);
     ctx.fill(circle);
   }
@@ -428,4 +434,21 @@ function draw() {
 如果你想要绘制一条从 (3,1) 到 (3,5)，宽度是 1.0 的线条，你会得到像第二幅图一样的结果。实际填充区域（深蓝色部分）仅仅延伸至路径两旁各一半像素。而这半个像素又会以近似的方式进行渲染，这意味着那些像素只是部分着色，结果就是以实际笔触颜色一半色调的颜色来填充整个区域（浅蓝和深蓝的部分）。这就是上例中为何宽度为 1.0 的线并不准确的原因。
 
 要解决这个问题，你必须对路径施以更加精确的控制。已知粗 1.0 的线条会在路径两边各延伸半像素，那么像第三幅图那样绘制从 (3.5,1) 到 (3.5,5) 的线条，其边缘正好落在像素边界，填充出来就是准确的宽为 1.0 的线条。
+
+## 渐变 Gradients
+
+`createLinearGradient(x1, y1, x2, y2)`
+createLinearGradient 方法接受 4 个参数，表示渐变的起点 (x1,y1) 与终点 (x2,y2)。
+
+`createRadialGradient(x1, y1, r1, x2, y2, r2)`
+createRadialGradient 方法接受 6 个参数，前三个定义一个以 (x1,y1) 为原点，半径为 r1 的圆，后三个参数则定义另一个以 (x2,y2) 为原点，半径为 r2 的圆
+`gradient.addColorStop(position, color)`
+addColorStop 方法接受 2 个参数，position 参数必须是一个 0.0 与 1.0 之间的数值，表示渐变中颜色所在的相对位置。例如，0.5 表示颜色会出现在正中间。color 参数必须是一个有效的 CSS 颜色值（如 #FFF， rgba(0,0,0,1)，等等）。
+
+多个色标，黑白渐变的例子
+```js
+var lineargradient = ctx.createLinearGradient(0,0,150,150);
+lineargradient.addColorStop(0,'white');
+lineargradient.addColorStop(1,'black');
+```
 

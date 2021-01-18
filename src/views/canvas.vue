@@ -1,10 +1,11 @@
 <template>
   <div class="canvas-page">
-    <!-- cavas 是行内的 -->
+    <!-- canvas 是行内的 -->
     <canvas width="150px" height="150px" ref="canvas0"></canvas>
     <canvas width="150px" height="150px" ref="canvas1"></canvas>
     <canvas width="150px" height="150px" ref="canvas2"></canvas>
     <canvas width="150px" height="150px" ref="canvas3"></canvas>
+    <canvas width="150px" height="150px" ref="canvas4"></canvas>
   </div>
 </template>
 
